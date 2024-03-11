@@ -1,16 +1,17 @@
 class BooksController < ApplicationController
-  def new
+  def index
+    @books = Book.all
     @book = Book.new
   end
   
   def create
-    book = Book.new
-    book.save
-    redirect_to 'top'
-  end
-    
-  def index
-    @books = Book.all
+    @book = Book.new(book_params)
+    if @book.save
+      @books = Book.all
+      redirect_to '/books'
+    else
+      render :new
+    end
   end
 
   def show

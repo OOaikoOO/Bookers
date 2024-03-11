@@ -1,14 +1,26 @@
 <h1>Books</h1>
-<% @books.each do |list| %>
-
-  <p>Title</p>
-  <span><%= book.title %></span>
-
-<% end %>
-
-<% @books.each do |list| %>
-
-  <p>Body</p>
-  <span><%= book.body %></span>
-
+<table>
+  
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+  
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+    </tr>
+  <% end %>
+  
+</table>
+  
+<%= form_with model: @book do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+	
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+	
+  <%= f.submit 'Create Book' %>
 <% end %>
